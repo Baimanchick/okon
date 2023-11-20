@@ -1,0 +1,99 @@
+.main-content {
+  margin: 0px 75px 0px 75px;
+}
+
+.bio-main {
+  background-color: #000;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+
+.bio-container {
+  display: flex;
+  padding: 25px;
+}
+
+.bio-wrapper-left > img {
+  width: 484px;
+  height: 321px;
+  object-fit: cover;
+}
+
+.bio-wrapper-right {
+  margin-left: 20px;
+}
+
+.bio-h2 {
+  color: #fff;
+  font-size: 65px;
+  font-weight: 600;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.bio-h3 {
+  color: #fff;
+  font-size: 23px;
+  font-weight: lighter;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 35px;
+}
+
+.bio-p-1 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: lighter;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 25px;
+}
+.bio-p-2 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: lighter;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 25px;
+}
+
+.bio-button {
+  color: #fff;
+  border: 1px solid #ffdd00;
+  background-color: transparent;
+  width: 152px;
+  height: 41px;
+  border-radius: 5px;
+  font-weight: lighter;
+  margin-top: 50px;
+  transition: all 0.5s;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.bio-button:hover {
+  color: #000;
+  background-color: #ffdd00;
+}
+
+@media screen and (max-width: 1115px) {
+  .main-content {
+    margin: 0px 20px 0px 20px;
+  }
+}
+
+@media screen and (max-width: 947px) {
+  .bio-container {
+    display: block;
+  }
+  .bio-wrapper-left > img {
+    width: 100%;
+    height: 100%;
+  }
+  .bio-h2 {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .bio-h2 {
+    font-size: 40px;
+  }
+}
