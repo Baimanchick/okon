@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "cero-pro-med";
+  src: url("../fonts/CeraPro/CeraPro-Medium.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "cero-pro-reg";
+  src: url("../fonts/CeraPro/CeraPro-Regular.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "cero-pro-bold";
+  src: url("../fonts/CeraPro/CeraPro-Bold.woff") format("truetype");
+}
+
+.about-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+.about-title > span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 100;
+  font-family: "cero-pro-med";
+}
+
+.about-title > span > strong {
+  color: #ffdd00;
+  cursor: pointer;
+}
+
+.about-h2 {
+  font-size: 100px;
+  color: #fff;
+  font-family: "cero-pro-bold";
+  margin-top: 28px;
+}
+
+.title-about > span {
+  font-family: "cero-pro-med";
+  font-size: 20px;
+  color: #fff;
+}
+
+.title-about > p {
+  font-family: "cero-pro-reg";
+  font-size: 18px;
+  color: #c2c2c2;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.about-h3 {
+  font-size: 32px;
+  color: #fff;
+  font-family: "cero-pro-bold";
+  margin-bottom: 15px;
+}
+
+.about-section {
+  background: linear-gradient(to bottom, #111111, #2a2a2a);
+  border: 1px solid #000000;
+  padding: 25px;
+  margin-top: 40px;
+}
+
+.about-container {
+  display: flex;
+  gap: 25px;
+}
+
+.about-img {
+  width: 484px;
+  height: 726px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 810px) {
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    // gap: 25px;
+  }
+  .about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .about-h2 {
+    font-size: 75px;
+  }
+}
+
+@media screen and (max-width: 351px) {
+  .about-h2 {
+    font-size: 55px;
+  }
+}
