@@ -1,0 +1,20 @@
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 190px;
+}
+.contact-section > h2 {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 100;
+}
+
+.contact-section > h3 {
+  color: #fff;
+  font-size: 28px;
+  font-family: "mulish";
+  font-weight: 100;
+  margin-top: 15px;
+}

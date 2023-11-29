@@ -109,7 +109,6 @@ function HomePage() {
             </div>
           </div>
         </div>
-
         <div className="news-button-container">
           <button onClick={() => navigate("/blog")} className="news-button">
             Все новости ⇨
