@@ -13,6 +13,11 @@
   src: url("../fonts/CeraPro/CeraPro-Bold.woff") format("truetype");
 }
 
+@font-face {
+  font-family: "mulish";
+  src: url("../fonts/Mulish/Mulish-VariableFont_wght.ttf") format("truetype");
+}
+
 .about-header {
   display: flex;
   flex-direction: column;
