@@ -9,14 +9,14 @@ function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-sm-12 col-md-6">
-            <h6>About</h6>
+            <h6>Обо мне</h6>
             <p className="text-justify">
-              Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to
-              help the upcoming programmers with the code. Scanfcode focuses on
-              providing the most efficient code or snippets as the code wants to
-              be simple. We will help programmers build up concepts in different
-              programming languages that include C, C++, Java, HTML, CSS,
-              Bootstrap, JavaScript, PHP, Android, SQL, and Algorithm.
+              Привет! Гулшаркан Култаева, родилась 24 октября 1972 года в селе
+              Ак-Суу. В 1993 году закончила Ошский технологический техникум по
+              специальности "Техник-технолог прядильного производства". В 2001
+              году успешно завершила обучение в Ошском технологическом
+              университете по специальности "Бухгалтерский учет и аудит". Рада
+              делиться этим с тобой!
             </p>
           </div>
         </div>
@@ -26,8 +26,8 @@ function Footer() {
         <div className="row">
           <div className="col-md-8 col-sm-6 col-xs-12">
             <p className="copyright-text">
-              Copyright &copy; 2017 All Rights Reserved by{" "}
-              <a href="#">Scanfcode</a>.
+              Made in &copy; 2023 All Rights Reserved by{" "}
+              <a href="#">Abdalimov Baimurat</a>.
             </p>
           </div>
 

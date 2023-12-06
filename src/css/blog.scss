@@ -3,10 +3,11 @@
 }
 
 .blog-card-img {
-  width: 431px;
-  height: 431px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   transition: transform 0.3s ease-out;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .blog-card-img:hover {
@@ -37,9 +38,10 @@
 }
 
 .blog-card {
-  width: 431px;
+  width: 401px;
   height: auto;
   background-color: #1f1f1f;
+  border-radius: 10px;
 }
 
 .blog-button-container > button {

@@ -34,6 +34,7 @@
 }
 .footer-links li {
   display: block;
+  list-style-type: none;
 }
 .footer-links a {
   color: #737373;
@@ -46,6 +47,7 @@
 }
 .footer-links.inline li {
   display: inline-block;
+  list-style-type: none;
 }
 .site-footer .social-icons {
   text-align: right;
@@ -74,9 +76,6 @@
   }
 }
 @media (max-width: 767px) {
-  .site-footer {
-    padding-bottom: 0;
-  }
   .site-footer .copyright-text,
   .site-footer .social-icons {
     text-align: center;
@@ -90,6 +89,7 @@
 .social-icons li {
   display: inline-block;
   margin-bottom: 4px;
+  list-style-type: none;
 }
 .social-icons li.title {
   margin-right: 15px;

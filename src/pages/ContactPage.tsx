@@ -16,7 +16,7 @@ function ContactPage() {
       </header>
       <section className="contact-section">
         <h2>Почта</h2>
-        <h3>kargo2016@gmail.com</h3>
+        <h3>kultaeva2021@gmail.com</h3>
       </section>
     </div>
   );
