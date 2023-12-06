@@ -26,9 +26,13 @@ function HomePage() {
                 этом есть суть формирования культурного общества.
               </p>
               <p className="bio-p-2">
-                Моя задача минимум, развивать любимый спорт на максимум.
-                Помогать в реализации футбольных событий Всероссийского масштаба
-                и стремиться к улучшению мира вокруг себя.
+                Моя цель - предоставлять поддержку и вести честную работу,
+                принося пользу обществу. Стремлюсь к благотворительной
+                деятельности, улучшая жизнь людей. Моя работа основана на
+                принципах честности и ответственности, вдохновляя доверие. В
+                качестве гражданина, стараюсь быть примером честного и
+                преданного труду поведения, способствуя позитивным изменениям в
+                обществе.
               </p>
               <button onClick={() => navigate("/about")} className="bio-button">
                 Обо мне ⇨
@@ -46,7 +50,10 @@ function HomePage() {
         <h2>Проекты</h2>
         <div className="proj-container">
           <div className="proj-card-container">
-            <div className="proj-card">
+            <div
+              onClick={() => navigate("/projectdetail")}
+              className="proj-card"
+            >
               <div className="proj-img">
                 <img src="https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg" />
               </div>
@@ -59,7 +66,10 @@ function HomePage() {
                 <button>Подробнее</button>
               </div>
             </div>
-            <div className="proj-card">
+            <div
+              onClick={() => navigate("/projectdetail")}
+              className="proj-card"
+            >
               <div className="proj-img">
                 <img src="https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg" />
               </div>
@@ -72,7 +82,10 @@ function HomePage() {
                 <button>Подробнее</button>
               </div>
             </div>
-            <div className="proj-card">
+            <div
+              onClick={() => navigate("/projectdetail")}
+              className="proj-card"
+            >
               <div className="proj-img">
                 <img src="https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg" />
               </div>
@@ -99,7 +112,7 @@ function HomePage() {
         <h2>Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
-            <div className="news-card">
+            <div onClick={() => navigate("/detail")} className="news-card">
               <div className="news-date">
                 <span>11.07.2023</span>
               </div>

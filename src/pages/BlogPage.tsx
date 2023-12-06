@@ -17,9 +17,9 @@ function BlogPage() {
 
       <div className="blog-card-main">
         <div className="blog-card-container">
-          <div className="blog-card">
+          <div onClick={() => navigate("/detail")} className="blog-card">
             <img
-              src="https://but-vv.ru/wp-content/uploads/2023/11/vitalij-but.-futbol-8h8.jpg"
+              src="https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
               className="blog-card-img"
             />
             <div className="blog-card-title-container">
@@ -34,9 +34,9 @@ function BlogPage() {
             </div>
           </div>
 
-          <div className="blog-card">
+          <div onClick={() => navigate("/detail")} className="blog-card">
             <img
-              src="https://but-vv.ru/wp-content/uploads/2023/11/vitalij-but.-futbol-8h8.jpg"
+              src="https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
               className="blog-card-img"
             />
             <div className="blog-card-title-container">
@@ -51,9 +51,9 @@ function BlogPage() {
             </div>
           </div>
 
-          <div className="blog-card">
+          <div onClick={() => navigate("/detail")} className="blog-card">
             <img
-              src="https://but-vv.ru/wp-content/uploads/2023/11/vitalij-but.-futbol-8h8.jpg"
+              src="https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
               className="blog-card-img"
             />
             <div className="blog-card-title-container">
