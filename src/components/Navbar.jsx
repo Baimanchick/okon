@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <>
       {/* width: 999px */}
-      <nav>
+      <nav className="nav-jsx">
         <div className="navbar">
           <div className="container nav-container">
             <input className="checkbox" type="checkbox" name="" id="" />
