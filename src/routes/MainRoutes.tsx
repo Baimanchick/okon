@@ -9,6 +9,7 @@ import ContactPage from "../pages/ContactPage";
 import FormPage from "../pages/FormPage";
 import DetailPage from "../pages/DetailPage";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
+import AdminPage from "../pages/AdminPage";
 
 function MainRoutes() {
   return (
@@ -23,6 +24,7 @@ function MainRoutes() {
         <Route path="/detail" element={<DetailPage />} />
         <Route path="/projectdetail" element={<ProjectDetailPage />} />
       </Route>
+      <Route path="/admin" element={<AdminPage />} />
     </Routes>
   );
 }
