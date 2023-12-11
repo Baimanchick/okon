@@ -18,6 +18,18 @@ function Navbar() {
   const handleSearchClick = () => {
     setSearchActive(!searchActive);
   };
+
+  const handleNavigationClick = (path) => {
+    setActiveItem(path);
+    navigate(path);
+
+    // Toggle the checkbox to close the menu
+    const checkbox = document.querySelector(".checkbox");
+    if (checkbox) {
+      checkbox.checked = false;
+    }
+  };
+
   return (
     <>
       {/* width: 999px */}
@@ -40,10 +52,7 @@ function Navbar() {
                 className={`navigation-item ${
                   activeItem === "/" ? "active-1" : ""
                 }`}
-                onClick={() => {
-                  setActiveItem("/");
-                  navigate("/");
-                }}
+                onClick={() => handleNavigationClick("/")}
               >
                 Главная
               </li>
@@ -51,10 +60,7 @@ function Navbar() {
                 className={`navigation-item ${
                   activeItem === "/project" ? "active-1" : ""
                 }`}
-                onClick={() => {
-                  setActiveItem("/project");
-                  navigate("/project");
-                }}
+                onClick={() => handleNavigationClick("/project")}
               >
                 Проекты
               </li>
@@ -62,10 +68,7 @@ function Navbar() {
                 className={`navigation-item ${
                   activeItem === "/about" ? "active-1" : ""
                 }`}
-                onClick={() => {
-                  setActiveItem("/about");
-                  navigate("/about");
-                }}
+                onClick={() => handleNavigationClick("/about")}
               >
                 Обо мне
               </li>
@@ -73,10 +76,7 @@ function Navbar() {
                 className={`navigation-item ${
                   activeItem === "/blog" ? "active-1" : ""
                 }`}
-                onClick={() => {
-                  setActiveItem("/blog");
-                  navigate("/blog");
-                }}
+                onClick={() => handleNavigationClick("/blog")}
               >
                 Блог
               </li>
@@ -84,10 +84,7 @@ function Navbar() {
                 className={`navigation-item ${
                   activeItem === "/contact" ? "active-1" : ""
                 }`}
-                onClick={() => {
-                  setActiveItem("/contact");
-                  navigate("/contact");
-                }}
+                onClick={() => handleNavigationClick("/contact")}
               >
                 Контакты
               </li>
@@ -106,7 +103,12 @@ function Navbar() {
               >
                 <CiFacebook />
               </a>
-              <button className="form-button">Диалог</button>
+              <button
+                onClick={() => handleNavigationClick("/form")}
+                className="form-button"
+              >
+                Диалог
+              </button>
             </div>
           </div>
         </div>
