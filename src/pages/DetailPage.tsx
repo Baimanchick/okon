@@ -91,7 +91,6 @@ function DetailPage() {
                   />
                   <div className="detail-similar-card-title">
                     <p>Приоритет — детский футбол</p>
-                    <span>07.10.2023</span>
                   </div>
                 </div>
                 <div className="detail-simialr-card">
@@ -101,7 +100,6 @@ function DetailPage() {
                   />
                   <div className="detail-similar-card-title">
                     <p>Приоритет — детский футбол</p>
-                    <span>07.10.2023</span>
                   </div>
                 </div>
                 <div className="detail-simialr-card">
@@ -111,7 +109,6 @@ function DetailPage() {
                   />
                   <div className="detail-similar-card-title">
                     <p>Приоритет — детский футбол</p>
-                    <span>07.10.2023</span>
                   </div>
                 </div>
               </div>

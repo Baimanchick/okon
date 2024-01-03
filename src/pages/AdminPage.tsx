@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/admin.scss";
 
 function AdminPage() {
-  const [activeA, setActiveA] = useState("Новости");
+  const [activeA, setActiveA] = useState("dashboard");
 
   const handleAClick = (a: string) => {
     setActiveA(a);

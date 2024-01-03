@@ -67,7 +67,7 @@ function FormPage() {
               className="input-special"
               placeholder="Обращение"
             />
-            <label>Почта</label>
+            <label>Ваша Почта</label>
             <input type="text" className="input" placeholder="@gmail.com" />
             <button>Отправить</button>
           </form>

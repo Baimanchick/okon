@@ -109,13 +109,11 @@ function HomePage() {
       </div>
 
       <div className="news-main">
-        <h2>Новости</h2>
+        <h2> Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
             <div onClick={() => navigate("/detail")} className="news-card">
-              <div className="news-date">
-                <span>11.07.2023</span>
-              </div>
+              <div className="news-date"></div>
               <div className="news-desc-container">
                 <span className="news-desc"> Lorem ipsum dolor sit amet.</span>
               </div>

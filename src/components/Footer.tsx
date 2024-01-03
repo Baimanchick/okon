@@ -27,7 +27,7 @@ function Footer() {
           <div className="col-md-8 col-sm-6 col-xs-12">
             <p className="copyright-text">
               Made in &copy; 2023 All Rights Reserved by{" "}
-              <a href="#">Abdalimov Baimurat</a>.
+              <a href="#">Baimurat</a>.
             </p>
           </div>
 
