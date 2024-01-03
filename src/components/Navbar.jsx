@@ -23,7 +23,6 @@ function Navbar() {
     setActiveItem(path);
     navigate(path);
 
-    // Toggle the checkbox to close the menu
     const checkbox = document.querySelector(".checkbox");
     if (checkbox) {
       checkbox.checked = false;

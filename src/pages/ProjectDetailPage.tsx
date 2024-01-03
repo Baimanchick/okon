@@ -94,7 +94,7 @@ function ProjectDetailPage() {
             </div>
             <hr className="project-detail-hr" />
             <div className="project-detail-similar-main">
-              <h2 className="project-detail-similar-h2">Похожие записи</h2>
+              <h2 className="project-detail-similar-h2">Новые записи</h2>
               <div className="project-detail-similar-container">
                 <div className="project-detail-simialr-card">
                   <img
@@ -103,7 +103,6 @@ function ProjectDetailPage() {
                   />
                   <div className="project-detail-similar-card-title">
                     <p>Приоритет — детский футбол</p>
-                    <span>07.10.2023</span>
                   </div>
                 </div>
                 <div className="project-detail-simialr-card">
@@ -113,7 +112,6 @@ function ProjectDetailPage() {
                   />
                   <div className="project-detail-similar-card-title">
                     <p>Приоритет — детский футбол</p>
-                    <span>07.10.2023</span>
                   </div>
                 </div>
                 <div className="project-detail-simialr-card">
@@ -123,7 +121,6 @@ function ProjectDetailPage() {
                   />
                   <div className="project-detail-similar-card-title">
                     <p>Приоритет — детский футбол</p>
-                    <span>07.10.2023</span>
                   </div>
                 </div>
               </div>
