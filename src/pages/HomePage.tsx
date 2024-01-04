@@ -1,9 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Gul from "../css/images/gulshar.jpg";
 import "../css/home.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function HomePage() {
+  interface blogsI {
+    title: string,
+    text: string,
+    img: string,
+    img1: string,
+    text1: string
+  }
+
+  const [ projects, setProjects ] = useState<blogsI[]>([]);
+  const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
+
+  const [ news, setNews ] = useState<blogsI[]>([]);
+
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get(`https://tao-db.vercel.app/projects`);
+      setProjects(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchNews = async () => {
+    try {
+      const response = await axios.get(`https://tao-db.vercel.app/news`);
+      setNews(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+    fetchNews();
+  }, []);
+
   const navigate = useNavigate();
 
   return (
@@ -39,10 +76,6 @@ function HomePage() {
               </button>
             </div>
           </div>
-
-          {/*  */}
-
-          {/*  */}
         </div>
       </div>
 
@@ -50,54 +83,22 @@ function HomePage() {
         <h2>Проекты</h2>
         <div className="proj-container">
           <div className="proj-card-container">
+          { projects.slice(0, visibleBlogs).map((project, index) => (
             <div
+              key={index}
               onClick={() => navigate("/projectdetail")}
               className="proj-card"
             >
               <div className="proj-img">
-                <img src="https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg" />
+                <img src={project.img ? project.img : "https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg"} alt={project.title} />
               </div>
               <div className="proj-title">
-                <h3>Парламент</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Repellendus, dignissimos.
-                </p>
+                <h3>{project.title}</h3>
+                <p>{project.text}</p>
                 <button>Подробнее</button>
               </div>
             </div>
-            <div
-              onClick={() => navigate("/projectdetail")}
-              className="proj-card"
-            >
-              <div className="proj-img">
-                <img src="https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg" />
-              </div>
-              <div className="proj-title">
-                <h3>Парламент</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Repellendus, dignissimos.
-                </p>
-                <button>Подробнее</button>
-              </div>
-            </div>
-            <div
-              onClick={() => navigate("/projectdetail")}
-              className="proj-card"
-            >
-              <div className="proj-img">
-                <img src="https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg" />
-              </div>
-              <div className="proj-title">
-                <h3>Парламент</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Repellendus, dignissimos.
-                </p>
-                <button>Подробнее</button>
-              </div>
-            </div>
+          )) }
           </div>
         </div>
 
@@ -112,12 +113,14 @@ function HomePage() {
         <h2> Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
-            <div onClick={() => navigate("/detail")} className="news-card">
-              <div className="news-date"></div>
-              <div className="news-desc-container">
-                <span className="news-desc"> Lorem ipsum dolor sit amet.</span>
+            { news.slice(0, visibleBlogs).map((item, index) => (
+              <div onClick={() => navigate("/detail")} className="news-card">
+                <div className="news-date"></div>
+                <div className="news-desc-container">
+                  <span className="news-desc">{ item.title }</span>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="news-button-container">

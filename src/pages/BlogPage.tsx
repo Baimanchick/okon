@@ -1,9 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/blog.scss";
-
+import axios from 'axios'
+ 
 function BlogPage() {
+
+  interface blogsI {
+    title: string,
+    text: string,
+    img: string,
+    img1: string,
+    text1: string
+  }
+
+  const [ blogs, setBlogs ] = useState<blogsI[]>([]);
+  const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await axios.get(`https://tao-db.vercel.app/blogs`);
+      setBlogs(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const loadMoreBlogs = () => {
+    setVisibleBlogs((prev) => prev + 3);
+  };
+
   const navigate = useNavigate();
+
   return (
     <div className="main-content">
       <header className="about-header">
@@ -17,64 +48,30 @@ function BlogPage() {
 
       <div className="blog-card-main">
         <div className="blog-card-container">
-          <div onClick={() => navigate("/detail")} className="blog-card">
-            <img
-              src="https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
-              className="blog-card-img"
-            />
-            <div className="blog-card-title-container">
-              <h3>Футбол в формате 8х8</h3>
-              <p>
-                Прямо сейчас Новороссийская Федерация футбола проводит отличный
-                турнир по футболу в формате 8х8 Приоритет — детский футбол Итоги
-                городского детского первенства Главной особенностью соревнований
-                является тот факт, что все игры проходят по будням в вечернее
-                время, что само по себе…
-              </p>
+          { blogs?.slice(0, visibleBlogs).map(( blog, index ) => (
+            <div onClick={() => navigate("/detail")} className="blog-card">
+              <img
+                src={ blog?.img ? blog.img : "https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg" }
+                className="blog-card-img"
+                alt="img blog"
+              />
+              <div className="blog-card-title-container">
+                <h3>{ blog?.title }</h3>
+                <p>
+                  { blog?.text }
+                </p>
+              </div>
             </div>
-          </div>
-
-          <div onClick={() => navigate("/detail")} className="blog-card">
-            <img
-              src="https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
-              className="blog-card-img"
-            />
-            <div className="blog-card-title-container">
-              <h3>Футбол в формате 8х8</h3>
-              <p>
-                Прямо сейчас Новороссийская Федерация футбола проводит отличный
-                турнир по футболу в формате 8х8 Приоритет — детский футбол Итоги
-                городского детского первенства Главной особенностью соревнований
-                является тот факт, что все игры проходят по будням в вечернее
-                время, что само по себе…
-              </p>
-            </div>
-          </div>
-
-          <div onClick={() => navigate("/detail")} className="blog-card">
-            <img
-              src="https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
-              className="blog-card-img"
-            />
-            <div className="blog-card-title-container">
-              <h3>Футбол в формате 8х8</h3>
-              <p>
-                Прямо сейчас Новороссийская Федерация футбола проводит отличный
-                турнир по футболу в формате 8х8 Приоритет — детский футбол Итоги
-                городского детского первенства Главной особенностью соревнований
-                является тот факт, что все игры проходят по будням в вечернее
-                время, что само по себе…
-              </p>
-            </div>
-          </div>
+          )) }
         </div>
       </div>
 
       <div className="blog-button-container">
-        <button>Загрузить еще</button>
+        {visibleBlogs < blogs.length && (
+          <button onClick={loadMoreBlogs}>Загрузить еще</button>
+        )}
       </div>
-
-      {/*  */}
+      
     </div>
   );
 }
