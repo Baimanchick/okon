@@ -140,10 +140,30 @@ footer[role="contentinfo"] {
   -ms-border-radius: 0.3rem;
   border-radius: 0.3rem;
   margin: 1%;
+  display: flex;
+  align-items: center;
 }
 .panel > h2,
 .panel > ul {
   margin: 1rem;
+}
+
+.panel > button {
+  background-color: #c53221;
+  color: white;
+  border: none;
+  padding: 23px;
+  border-radius: 5px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.panel > button:hover{
+  background-color: #ea3c28;
 }
 
 /* typography */
