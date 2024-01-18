@@ -5,6 +5,8 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import "../css/projectdetailpage.scss";
 
 function ProjectDetailPage() {
+  let src = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
+
   return (
     <div className="main-content">
       <div className="project-detail-container">
@@ -35,6 +37,14 @@ function ProjectDetailPage() {
                 className="project-detail-img"
               />
             </div>
+            <iframe
+              className="video-container"
+              src={src}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
             <div className="project-detail-utils-container">
               <h3>Поделитесь с друзьями</h3>
               <div className="project-detail-icons">

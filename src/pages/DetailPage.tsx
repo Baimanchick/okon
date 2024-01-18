@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import "../css/detail.scss";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function DetailPage() {
+  let src = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
   return (
     <div className="main-content">
       <div className="detail-container">
@@ -33,6 +36,16 @@ function DetailPage() {
                 className="detail-img"
               />
             </div>
+
+            <iframe
+              className="video-container"
+              src={src}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+
             <div className="detail-utils-container">
               <h3>Поделитесь с друзьями</h3>
               <div className="detail-icons">
