@@ -43,6 +43,8 @@ function ProjectDetailPage() {
   useEffect(() => {
     fetchProjectDetails();
   }, [id]);  
+    
+  let src = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
 
   useEffect(() => {
     fetchProjects();

@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/about.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function AboutMePage() {
+  interface blogsI {
+    title: string;
+    text: string;
+    img: string;
+    img1: string;
+    text1: string;
+  }
   const navigate = useNavigate();
+  const [news, setNews] = useState<blogsI[]>([]);
+  const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
+
+  const fetchNews = async () => {
+    try {
+      const response = await axios.get(`https://tao-db.vercel.app/blogs`);
+      setNews(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
   return (
     <div className="main-content">
       <header className="about-header">
@@ -68,20 +92,19 @@ function AboutMePage() {
       </section>
 
       <div className="news-main">
-        <h2>Новости</h2>
+        <h2> Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
-            <div onClick={() => navigate("/detail")} className="news-card">
-              <div className="news-date">
-                <span>11.07.2023</span>
+            {news.slice(0, visibleBlogs).map((item, index) => (
+              <div onClick={() => navigate("/detail")} className="news-card">
+                <div className="news-date"></div>
+                <div className="news-desc-container">
+                  <span className="news-desc">{item.title}</span>
+                </div>
               </div>
-              <div className="news-desc-container">
-                <span className="news-desc"> Lorem ipsum dolor sit amet.</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-
         <div className="news-button-container">
           <button onClick={() => navigate("/blog")} className="news-button">
             Все новости ⇨

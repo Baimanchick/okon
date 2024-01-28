@@ -14,10 +14,10 @@ function HomePage() {
     text1: string
   }
 
-  const [ projects, setProjects ] = useState<blogsI[]>([]);
+  const [projects, setProjects] = useState<blogsI[]>([]);
   const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
 
-  const [ news, setNews ] = useState<blogsI[]>([]);
+  const [news, setNews] = useState<blogsI[]>([]);
 
   const fetchProjects = async () => {
     try {
@@ -120,7 +120,7 @@ function HomePage() {
               <div key={index} onClick={() => navigate("/detail")} className="news-card">
                 <div className="news-date"></div>
                 <div className="news-desc-container">
-                  <span className="news-desc">{ item.title }</span>
+                  <span className="news-desc">{item.title}</span>
                 </div>
               </div>
             ))}
