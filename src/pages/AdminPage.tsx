@@ -5,18 +5,17 @@ import { useNavigate } from "react-router-dom";
 
 function AdminPage() {
   interface blogsI {
-    id: number;
-    title: string;
-    text: string;
-    img: string;
-    img1: string;
-    text1: string;
+    _id: any,
+    title: string,
+    text: string,
+    img: string,
+    img1: string,
+    text1: string
   }
 
   const [projects, setProjects] = useState<blogsI[]>([]);
   const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
-  const [blogs, setBlogs] = useState<blogsI[]>([]);
-
+  const [ blogs, setBlogs ] = useState<blogsI[]>([]);
   const [addForm, setAddForm] = useState(false);
   const [addForm2, setAddForm2] = useState(false);
   const [title, setTitle] = useState("");
@@ -30,7 +29,7 @@ function AdminPage() {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get(`https://tao-db.vercel.app/projects`);
+      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/projects`);
       setProjects(response.data);
     } catch (error) {
       console.log(error);
@@ -39,36 +38,42 @@ function AdminPage() {
 
   const navigate = useNavigate();
 
-  const deleteF = async (id: number) => {
+  const deleteF = async (id: any) => {
     try {
-      await axios.delete(`https://tao-db.vercel.app/projects/${id}`);
-      navigate(0);
-      fetchProjects();
+      await axios.delete(`https://okon-a1fcca8c40a0.herokuapp.com/projects/${id}`);
+      await fetchProjects();
     } catch (error) {
-      navigate("/admin");
       console.log(error);
     }
-  };
+  }  
 
-  const deleteBlog = async (id: number) => {
-    try {
-      await axios.delete(`https://tao-db.vercel.app/blogs/${id}`);
-      navigate(0);
-      fetchBlogs();
-    } catch (error) {
-      navigate("/admin");
-      console.log(error);
-    }
-  };
+  const deleteBlog = async (id: any) => {
+      try {
+        await axios.delete(`https://okon-a1fcca8c40a0.herokuapp.com/blogs/${id}`);
+        await fetchBlogs()
+      } catch (error) {
+        navigate('/admin')
+        console.log(error)
+      }
+  }
 
   const fetchBlogs = async () => {
-    const response = await axios.get(`https://tao-db.vercel.app/blogs`);
-    setBlogs(response.data);
+      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
+      setBlogs(response.data);
+    } catch (error) {
+      navigate("/admin");
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     fetchProjects();
     fetchBlogs();
+  }, []);
+
+  console.log(blogs)
+
+  const [activeA, setActiveA] = useState("dashboard");
     localStorage.setItem("activeA", activeA);
   }, [activeA]);
 
@@ -78,11 +83,8 @@ function AdminPage() {
 
   const handleAddProject = async (value: any) => {
     try {
-      const response = await axios.post(
-        "https://tao-db.vercel.app/projects",
-        value
-      );
-      fetchProjects();
+      const response = await axios.post('https://okon-a1fcca8c40a0.herokuapp.com/projects', value);
+      await fetchProjects();
     } catch (error) {
       console.log(error);
     }
@@ -90,11 +92,8 @@ function AdminPage() {
 
   const handleAddBlog = async (value: any) => {
     try {
-      const response = await axios.post(
-        "https://tao-db.vercel.app/blogs",
-        value
-      );
-      fetchBlogs();
+      const response = await axios.post('https://okon-a1fcca8c40a0.herokuapp.com/blogs', value);
+      await fetchBlogs();
     } catch (error) {
       console.log(error);
     }
@@ -167,13 +166,21 @@ function AdminPage() {
         {activeA === "edit"
           ? blogs.map((blog) => (
               <section className="panel important">
-                <h2>{blog.title}</h2>
-                <button type="submit" onClick={() => deleteBlog(blog.id)}>
-                  Удалить блог
-                </button>
+                <h2>{ project.title }</h2>
+                <button type="submit" onClick={() => deleteF(project._id)}>Удалить проект</button>
               </section>
-            ))
-          : null}
+            )
+          })
+        ) : null}
+
+        {activeA === "edit" ? (
+          blogs.map(( blog ) => (
+            <section className="panel important">
+              <h2>{ blog.title }</h2>
+              <button type="submit" onClick={() => deleteBlog(blog._id)}>Удалить блог</button>
+            </section>
+          ))
+        ) : null}
 
         {activeA === "write" ? (
           <section className="panel important">

@@ -6,11 +6,12 @@ import axios from "axios";
 
 function HomePage() {
   interface blogsI {
-    title: string;
-    text: string;
-    img: string;
-    img1: string;
-    text1: string;
+    _id: any,
+    title: string,
+    text: string,
+    img: string,
+    img1: string,
+    text1: string
   }
 
   const [projects, setProjects] = useState<blogsI[]>([]);
@@ -20,7 +21,7 @@ function HomePage() {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get(`https://tao-db.vercel.app/projects`);
+      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/projects`);
       setProjects(response.data);
     } catch (error) {
       console.log(error);
@@ -29,7 +30,7 @@ function HomePage() {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get(`https://tao-db.vercel.app/blogs`);
+      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
       setNews(response.data);
     } catch (error) {
       console.log(error);
@@ -40,6 +41,8 @@ function HomePage() {
     fetchProjects();
     fetchNews();
   }, []);
+
+  console.log(news, projects)
 
   const navigate = useNavigate();
 
@@ -83,21 +86,14 @@ function HomePage() {
         <h2>Проекты</h2>
         <div className="proj-container">
           <div className="proj-card-container">
-            {projects.slice(0, visibleBlogs).map((project, index) => (
+            {projects.slice(Math.max(projects.length - 3, 0)).map((project, index) => (
               <div
                 key={index}
-                onClick={() => navigate("/projectdetail")}
+                onClick={() => navigate(`/project/${project._id}`)}
                 className="proj-card"
               >
                 <div className="proj-img">
-                  <img
-                    src={
-                      project.img
-                        ? project.img
-                        : "https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg"
-                    }
-                    alt={project.title}
-                  />
+                  <img src={project.img ? project.img : "https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg"} alt={project.title} />
                 </div>
                 <div className="proj-title">
                   <h3>{project.title}</h3>
@@ -120,8 +116,8 @@ function HomePage() {
         <h2> Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
-            {news.slice(0, visibleBlogs).map((item, index) => (
-              <div onClick={() => navigate("/detail")} className="news-card">
+            { news.slice(Math.max(news.length - 3, 0)).map((item, index) => (
+              <div key={index} onClick={() => navigate("/detail")} className="news-card">
                 <div className="news-date"></div>
                 <div className="news-desc-container">
                   <span className="news-desc">{item.title}</span>
