@@ -16,7 +16,7 @@ function ProjectPage() {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get(`https://tao-db.vercel.app/projects`);
+      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/projects`);
       setProjects(response.data);
     } catch (error) {
       console.log(error);
@@ -50,7 +50,7 @@ function ProjectPage() {
                   className="proj-page-card"
                 >
                   <div className="proj-page-img">
-                    <img src="https://data.kaktus.media/image/big/2023-06-09_17-30-46_355822.jpg" />
+                    <img src={project.img} />
                   </div>
                   <div className="proj-page-title">
                     <h3>{ project.title }</h3>
@@ -62,7 +62,6 @@ function ProjectPage() {
                 </div>
               )
             }) }
-    
           </div>
         </div>
       </div>

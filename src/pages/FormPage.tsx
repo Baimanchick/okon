@@ -4,6 +4,33 @@ import "../css/form.scss";
 
 function FormPage() {
   const navigate = useNavigate();
+
+  function sendEmail() {
+    const form = document.getElementById('emailForm') as HTMLFormElement;
+    
+    if (!form) {
+      console.error('Form not found');
+      return;
+    }
+    
+    const formData = new FormData(form);
+    
+    fetch('https://okon-a1fcca8c40a0.herokuapp.com/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(Object.fromEntries(formData)),
+    })
+      .then(response => response.json())
+      .then(data => {
+        alert(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }  
+
   return (
     <div className="main-content">
       {/*  */}
@@ -58,18 +85,14 @@ function FormPage() {
       <div className="form-main">
         <div className="form-container">
           <p>Я рада услышать ваше мнение :)</p>
-          <form className="form">
+          <form className="form" id="emailForm">
             <label>Ф.И.О</label>
-            <input type="text" className="input" placeholder="Ф.И.О" />
+            <input type="text" className="input" placeholder="Ф.И.О" name="fullName" />
             <label>Обращение</label>
-            <input
-              type="text"
-              className="input-special"
-              placeholder="Обращение"
-            />
+            <input type="text" className="input-special" placeholder="Обращение" name="subject" />
             <label>Ваша Почта</label>
-            <input type="text" className="input" placeholder="@gmail.com" />
-            <button>Отправить</button>
+            <input type="text" className="input" placeholder="@gmail.com" name="email" />
+            <button type="button" onClick={sendEmail}>Отправить</button>
           </form>
         </div>
       </div>

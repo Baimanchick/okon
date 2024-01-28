@@ -69,6 +69,7 @@ function ProjectDetailPage() {
   const prevProjectId = projects[currentIndex - 1]
     ? projects[currentIndex - 1]._id
     : null;
+    
   let link = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
 
   return project ? (
@@ -86,7 +87,7 @@ function ProjectDetailPage() {
             </div>
             <iframe
               className="video-container"
-              src={link}
+              src={project.link}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

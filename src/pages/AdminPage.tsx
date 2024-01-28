@@ -10,7 +10,8 @@ function AdminPage() {
     text: string,
     img: string,
     img1: string,
-    text1: string
+    text1: string,
+    link: string
   }
 
   const [projects, setProjects] = useState<blogsI[]>([]);
@@ -23,6 +24,7 @@ function AdminPage() {
   const [img, setImg] = useState("");
   const [text1, setText1] = useState("");
   const [img1, setImg1] = useState("");
+  const [link, setLink] = useState("");
   const [activeA, setActiveA] = useState(() => {
     return localStorage.getItem("activeA") || "dashboard";
   });
@@ -201,6 +203,11 @@ function AdminPage() {
                   placeholder="img 1"
                   onChange={(e) => setImg1(e.target.value)}
                 />
+                <input
+                  type="text"
+                  placeholder="link"
+                  onChange={(e) => setLink(e.target.value)}
+                />
                 <button
                   onClick={() => {
                     const formValue = {
@@ -209,6 +216,7 @@ function AdminPage() {
                       img: img,
                       text1: text1,
                       img1: img1,
+                      link: link
                     };
                     console.log(formValue);
                     handleAddProject(formValue);
@@ -253,6 +261,11 @@ function AdminPage() {
                   placeholder="img 1"
                   onChange={(e) => setImg1(e.target.value)}
                 />
+                <input
+                  type="text"
+                  placeholder="link"
+                  onChange={(e) => setLink(e.target.value)}
+                />
                 <button
                   onClick={() => {
                     const formValue = {
@@ -261,6 +274,7 @@ function AdminPage() {
                       img: img,
                       text1: text1,
                       img1: img1,
+                      link: link
                     };
                     console.log(formValue);
                     handleAddBlog(formValue);

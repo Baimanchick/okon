@@ -11,7 +11,8 @@ function HomePage() {
     text: string,
     img: string,
     img1: string,
-    text1: string
+    text1: string,
+    link: string
   }
 
   const [projects, setProjects] = useState<blogsI[]>([]);
@@ -117,7 +118,8 @@ function HomePage() {
         <div className="news-container">
           <div className="news-card-container">
             { news.slice(Math.max(news.length - 3, 0)).map((item, index) => (
-              <div key={index} onClick={() => navigate("/detail")} className="news-card">
+              <div key={index} onClick={() => navigate(`/blog/${item._id}`)} className="news-card">
+                <img src={item.img} className="news-img" />
                 <div className="news-date"></div>
                 <div className="news-desc-container">
                   <span className="news-desc">{item.title}</span>
