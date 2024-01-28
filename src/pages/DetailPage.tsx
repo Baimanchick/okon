@@ -7,7 +7,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function DetailPage() {
-  let src = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
+  interface projectsI {
+    _id: any;
+    title: string;
+    text: string;
+    img: string;
+    img1: string;
+    text1: string;
+    link: string;
+  }
+  let link = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
+
   return (
     <div className="main-content">
       <div className="detail-container">
@@ -39,7 +49,7 @@ function DetailPage() {
 
             <iframe
               className="video-container"
-              src={src}
+              src={link}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
