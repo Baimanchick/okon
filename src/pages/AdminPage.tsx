@@ -58,6 +58,7 @@ function AdminPage() {
   }
 
   const fetchBlogs = async () => {
+    try{
       const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
       setBlogs(response.data);
     } catch (error) {
@@ -72,10 +73,6 @@ function AdminPage() {
   }, []);
 
   console.log(blogs)
-
-  const [activeA, setActiveA] = useState("dashboard");
-    localStorage.setItem("activeA", activeA);
-  }, [activeA]);
 
   const handleAClick = (a: string) => {
     setActiveA(a);
@@ -155,23 +152,13 @@ function AdminPage() {
               return (
                 <section className="panel important">
                   <h2>{project.title}</h2>
-                  <button type="submit" onClick={() => deleteF(project.id)}>
+                  <button type="submit" onClick={() => deleteF(project._id)}>
                     Удалить проект
                   </button>
                 </section>
               );
             })
           : null}
-
-        {activeA === "edit"
-          ? blogs.map((blog) => (
-              <section className="panel important">
-                <h2>{ project.title }</h2>
-                <button type="submit" onClick={() => deleteF(project._id)}>Удалить проект</button>
-              </section>
-            )
-          })
-        ) : null}
 
         {activeA === "edit" ? (
           blogs.map(( blog ) => (
