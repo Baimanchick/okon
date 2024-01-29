@@ -5,6 +5,7 @@ import axios from "axios";
 
 function AboutMePage() {
   interface blogsI {
+    _id: any;
     title: string;
     text: string;
     img: string;
@@ -17,7 +18,9 @@ function AboutMePage() {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
+      const response = await axios.get(
+        `https://okon-a1fcca8c40a0.herokuapp.com/blogs`
+      );
       setNews(response.data);
     } catch (error) {
       console.log(error);
@@ -95,8 +98,13 @@ function AboutMePage() {
         <h2> Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
-            {news.slice(0, visibleBlogs).map((item, index) => (
-              <div onClick={() => navigate("/detail")} className="news-card">
+            {news.slice(Math.max(news.length - 3, 0)).map((item, index) => (
+              <div
+                key={index}
+                onClick={() => navigate(`/blog/${item._id}`)}
+                className="news-card"
+              >
+                <img src={item.img} className="news-img" />
                 <div className="news-date"></div>
                 <div className="news-desc-container">
                   <span className="news-desc">{item.title}</span>

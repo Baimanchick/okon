@@ -1,24 +1,33 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/form.scss";
-import emailjs from "@emailjs/browser"
+import emailjs from "@emailjs/browser";
+import { notify } from "../components/Toastify";
 
 function FormPage() {
   const navigate = useNavigate();
 
-  const [ formValue, setFormValue ] = useState({
-      name: "",
-      user__email: "",
-      kilowatt: "",
-      address: "",
-  })
+  const [formValue, setFormValue] = useState({
+    fullName: "",
+    text: "",
+    email: "",
+  });
 
   const form = useRef<HTMLFormElement | null>(null);
 
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormValue((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-  
-    if (form.current) { // Проверяем, что form.current не равен null
+
+    if (form.current) {
+      // Проверяем, что form.current не равен null
       emailjs
         .sendForm(
           "service_2u8r3xd",
@@ -34,43 +43,43 @@ function FormPage() {
             console.log(error.text);
           }
         );
-  
+
       setFormValue({
-        name: "",
-        user__email: "",
-        kilowatt: "",
-        address: "",
+        fullName: "",
+        text: "",
+        email: "",
       });
+      notify("Вы успешно отправили мне сообщение");
     } else {
-      console.error('Form not found');
+      console.error("Form not found");
     }
-  };  
+  };
 
   function sendEmail() {
-    const form = document.getElementById('emailForm') as HTMLFormElement;
-    
+    const form = document.getElementById("emailForm") as HTMLFormElement;
+
     if (!form) {
-      console.error('Form not found');
+      console.error("Form not found");
       return;
     }
-    
+
     const formData = new FormData(form);
-    
-    fetch('https://okon-a1fcca8c40a0.herokuapp.com/send-email', {
-      method: 'POST',
+
+    fetch("https://okon-a1fcca8c40a0.herokuapp.com/send-email", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(Object.fromEntries(formData)),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         alert(data);
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
-  }  
+  }
 
   return (
     <div className="main-content">
@@ -126,14 +135,33 @@ function FormPage() {
       <div className="form-main">
         <div className="form-container">
           <p>Я рада услышать ваше мнение :)</p>
-          <form onSubmit={(e) => handleSubmit(e)} ref={form} className="form" id="emailForm">
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            ref={form}
+            className="form"
+            id="emailForm"
+          >
             <label>Ф.И.О</label>
-            <input type="text" className="input" placeholder="Ф.И.О" name="fullName" />
+            <input
+              type="text"
+              className="input"
+              placeholder="Ф.И.О"
+              name="fullName"
+              value={formValue.fullName}
+              onChange={handleChange}
+              required
+            />
             <label>Обращение</label>
-            <input type="text" className="input-special" placeholder="Обращение" name="text" />
-            <label>Ваша Почта</label>
-            <input type="text" className="input" placeholder="@gmail.com" name="email" />
-            <button>Отправить</button>
+            <input
+              type="text"
+              className="input-special"
+              placeholder="Обращение"
+              name="text"
+              value={formValue.text}
+              onChange={handleChange}
+              required
+            />
+            <button className="special-button-form">Отправить</button>
           </form>
         </div>
       </div>

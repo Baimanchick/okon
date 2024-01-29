@@ -10,8 +10,9 @@
 
 .proj-page-img > img {
   width: 100%;
-  height: 100%;
+  height: 300px;
   border-radius: 5px 5px 0px 0px;
+  object-fit: cover;
 }
 
 .proj-page-main > h2 {

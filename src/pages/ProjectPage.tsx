@@ -5,22 +5,32 @@ import axios from "axios";
 
 function ProjectPage() {
   interface blogsI {
-    title: string,
-    text: string,
-    img: string,
-    img1: string,
-    text1: string
+    title: string;
+    text: string;
+    img: string;
+    img1: string;
+    text1: string;
   }
 
-  const [ projects, setProjects ] = useState<blogsI[]>([]);
+  const [projects, setProjects] = useState<blogsI[]>([]);
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/projects`);
+      const response = await axios.get(
+        `https://okon-a1fcca8c40a0.herokuapp.com/projects`
+      );
       setProjects(response.data);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const truncateText = (text: any, wordLimit: any) => {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
   };
 
   useEffect(() => {
@@ -42,9 +52,8 @@ function ProjectPage() {
       <div className="proj-page-main">
         <div className="proj-page-container">
           <div className="proj-page-card-container">
-
-            { projects?.map(( project ) => {
-              return(
+            {projects?.map((project) => {
+              return (
                 <div
                   onClick={() => navigate("/projectdetail")}
                   className="proj-page-card"
@@ -53,15 +62,13 @@ function ProjectPage() {
                     <img src={project.img} />
                   </div>
                   <div className="proj-page-title">
-                    <h3>{ project.title }</h3>
-                    <p>
-                      { project.text }
-                    </p>
+                    <h3>{project.title}</h3>
+                    <p>{truncateText(project.text, 15)}</p>
                     <button>Подробнее</button>
                   </div>
                 </div>
-              )
-            }) }
+              );
+            })}
           </div>
         </div>
       </div>

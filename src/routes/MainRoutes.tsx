@@ -7,7 +7,6 @@ import AboutMePage from "../pages/AboutMePage";
 import BlogPage from "../pages/BlogPage";
 import ContactPage from "../pages/ContactPage";
 import FormPage from "../pages/FormPage";
-import DetailPage from "../pages/DetailPage";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
 import AdminPage from "../pages/AdminPage";
 import BlogDetailPage from "../pages/BlogDetailPage";
@@ -41,10 +40,9 @@ function MainRoutes() {
         <Route path="/blog/:id" element={<BlogDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/form" element={<FormPage />} />
-        <Route path="/detail" element={<DetailPage />} />
         {/* <Route path="/projectdetail" element={<ProjectDetailPage />} /> */}
       </Route>
-      <Route path="/admin" element={<AdminPage />} />
+      <Route path="/admin-132213" element={<AdminPage />} />
     </Routes>
   );
 }

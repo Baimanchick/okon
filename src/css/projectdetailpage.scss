@@ -196,6 +196,11 @@
   border-radius: 5px;
 }
 
+.project-detail-simialr-card {
+  width: 245px;
+  cursor: pointer;
+}
+
 .project-detail-similar-card-title {
   display: flex;
   flex-direction: column;
@@ -239,6 +244,10 @@
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+  }
+
+  .project-detail-simialr-card {
+    width: 100%;
   }
 
   .project-detail-similar-card-title > p {
