@@ -1,9 +1,50 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/form.scss";
+import emailjs from "@emailjs/browser"
 
 function FormPage() {
   const navigate = useNavigate();
+
+  const [ formValue, setFormValue ] = useState({
+      name: "",
+      user__email: "",
+      kilowatt: "",
+      address: "",
+  })
+
+  const form = useRef<HTMLFormElement | null>(null);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  
+    if (form.current) { // Проверяем, что form.current не равен null
+      emailjs
+        .sendForm(
+          "service_2u8r3xd",
+          "template_xe9nuau",
+          form.current, // Уточняем, что form.current не может быть undefined
+          "9_P_srz1wdW9abOTP"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+  
+      setFormValue({
+        name: "",
+        user__email: "",
+        kilowatt: "",
+        address: "",
+      });
+    } else {
+      console.error('Form not found');
+    }
+  };  
 
   function sendEmail() {
     const form = document.getElementById('emailForm') as HTMLFormElement;
@@ -85,14 +126,14 @@ function FormPage() {
       <div className="form-main">
         <div className="form-container">
           <p>Я рада услышать ваше мнение :)</p>
-          <form className="form" id="emailForm">
+          <form onSubmit={(e) => handleSubmit(e)} ref={form} className="form" id="emailForm">
             <label>Ф.И.О</label>
             <input type="text" className="input" placeholder="Ф.И.О" name="fullName" />
             <label>Обращение</label>
-            <input type="text" className="input-special" placeholder="Обращение" name="subject" />
+            <input type="text" className="input-special" placeholder="Обращение" name="text" />
             <label>Ваша Почта</label>
             <input type="text" className="input" placeholder="@gmail.com" name="email" />
-            <button type="button" onClick={sendEmail}>Отправить</button>
+            <button>Отправить</button>
           </form>
         </div>
       </div>
