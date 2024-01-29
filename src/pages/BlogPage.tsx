@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/blog.scss";
-import axios from 'axios'
- 
-function BlogPage() {
+import axios from "axios";
 
+function BlogPage() {
   interface blogsI {
-    _id: any
-    title: string,
-    text: string,
-    img: string,
-    img1: string,
-    text1: string
+    _id: any;
+    title: string;
+    text: string;
+    img: string;
+    img1: string;
+    text1: string;
   }
 
-  const [ blogs, setBlogs ] = useState<blogsI[]>([]);
+  const [blogs, setBlogs] = useState<blogsI[]>([]);
   const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
+      const response = await axios.get(
+        `https://okon-a1fcca8c40a0.herokuapp.com/blogs`
+      );
       setBlogs(response.data);
     } catch (error) {
       console.log(error);
@@ -32,6 +33,14 @@ function BlogPage() {
 
   const loadMoreBlogs = () => {
     setVisibleBlogs((prev) => prev + 3);
+  };
+
+  const truncateText = (text: any, wordLimit: any) => {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
   };
 
   const navigate = useNavigate();
@@ -49,21 +58,26 @@ function BlogPage() {
 
       <div className="blog-card-main">
         <div className="blog-card-container">
-          { blogs?.slice(0, visibleBlogs).map(( blog, index ) => (
-            <div onClick={() => navigate(`/blog/${blog._id}`)} className="blog-card">
+          {blogs?.slice(0, visibleBlogs).map((blog, index) => (
+            <div
+              onClick={() => navigate(`/blog/${blog._id}`)}
+              className="blog-card"
+            >
               <img
-                src={ blog?.img ? blog.img : "https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg" }
+                src={
+                  blog?.img
+                    ? blog.img
+                    : "https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
+                }
                 className="blog-card-img"
                 alt="img blog"
               />
               <div className="blog-card-title-container">
-                <h3>{ blog?.title }</h3>
-                <p>
-                  { blog?.text }
-                </p>
+                <h3>{blog?.title}</h3>
+                <p>{truncateText(blog?.text, 35)}</p>
               </div>
             </div>
-          )) }
+          ))}
         </div>
       </div>
 
@@ -72,7 +86,6 @@ function BlogPage() {
           <button onClick={loadMoreBlogs}>Загрузить еще</button>
         )}
       </div>
-      
     </div>
   );
 }

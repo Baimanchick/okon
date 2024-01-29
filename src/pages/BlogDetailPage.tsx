@@ -45,6 +45,16 @@ function BlogDetailPage() {
     }
   };
 
+  const truncateText = (text: string, wordLimit: number) => {
+    // Убедитесь, что text действительно строка
+    if (typeof text !== "string") return "";
+
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  };
   useEffect(() => {
     fetchProjectDetails();
   }, [id]);
@@ -69,8 +79,6 @@ function BlogDetailPage() {
   const prevProjectId = projects[currentIndex - 1]
     ? projects[currentIndex - 1]._id
     : null;
-    
-  let link = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
 
   return project ? (
     <div className="main-content">

@@ -2,21 +2,22 @@ import React, { useEffect, useState } from "react";
 import "../css/admin.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../components/Toastify";
 
 function AdminPage() {
   interface blogsI {
-    _id: any,
-    title: string,
-    text: string,
-    img: string,
-    img1: string,
-    text1: string,
-    link: string
+    _id: any;
+    title: string;
+    text: string;
+    img: string;
+    img1: string;
+    text1: string;
+    link: string;
   }
 
   const [projects, setProjects] = useState<blogsI[]>([]);
   const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
-  const [ blogs, setBlogs ] = useState<blogsI[]>([]);
+  const [blogs, setBlogs] = useState<blogsI[]>([]);
   const [addForm, setAddForm] = useState(false);
   const [addForm2, setAddForm2] = useState(false);
   const [title, setTitle] = useState("");
@@ -31,7 +32,9 @@ function AdminPage() {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/projects`);
+      const response = await axios.get(
+        `https://okon-a1fcca8c40a0.herokuapp.com/projects`
+      );
       setProjects(response.data);
     } catch (error) {
       console.log(error);
@@ -42,26 +45,32 @@ function AdminPage() {
 
   const deleteF = async (id: any) => {
     try {
-      await axios.delete(`https://okon-a1fcca8c40a0.herokuapp.com/projects/${id}`);
+      await axios.delete(
+        `https://okon-a1fcca8c40a0.herokuapp.com/projects/${id}`
+      );
       await fetchProjects();
+      notify("Вы успешно удалил проект!");
     } catch (error) {
       console.log(error);
     }
-  }  
+  };
 
   const deleteBlog = async (id: any) => {
-      try {
-        await axios.delete(`https://okon-a1fcca8c40a0.herokuapp.com/blogs/${id}`);
-        await fetchBlogs()
-      } catch (error) {
-        navigate('/admin')
-        console.log(error)
-      }
-  }
+    try {
+      await axios.delete(`https://okon-a1fcca8c40a0.herokuapp.com/blogs/${id}`);
+      await fetchBlogs();
+      notify("Вы успешно удалил блог!");
+    } catch (error) {
+      navigate("/admin");
+      console.log(error);
+    }
+  };
 
   const fetchBlogs = async () => {
-    try{
-      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
+    try {
+      const response = await axios.get(
+        `https://okon-a1fcca8c40a0.herokuapp.com/blogs`
+      );
       setBlogs(response.data);
     } catch (error) {
       navigate("/admin");
@@ -74,7 +83,7 @@ function AdminPage() {
     fetchBlogs();
   }, []);
 
-  console.log(blogs)
+  console.log(blogs);
 
   const handleAClick = (a: string) => {
     setActiveA(a);
@@ -82,8 +91,18 @@ function AdminPage() {
 
   const handleAddProject = async (value: any) => {
     try {
-      const response = await axios.post('https://okon-a1fcca8c40a0.herokuapp.com/projects', value);
+      const response = await axios.post(
+        "https://okon-a1fcca8c40a0.herokuapp.com/projects",
+        value
+      );
       await fetchProjects();
+      setTitle("");
+      setText("");
+      setImg("");
+      setText1("");
+      setImg1("");
+      setLink("");
+      notify("вы успешно добавили проект!");
     } catch (error) {
       console.log(error);
     }
@@ -91,8 +110,18 @@ function AdminPage() {
 
   const handleAddBlog = async (value: any) => {
     try {
-      const response = await axios.post('https://okon-a1fcca8c40a0.herokuapp.com/blogs', value);
+      const response = await axios.post(
+        "https://okon-a1fcca8c40a0.herokuapp.com/blogs",
+        value
+      );
       await fetchBlogs();
+      setTitle("");
+      setText("");
+      setImg("");
+      setText1("");
+      setImg1("");
+      setLink("");
+      notify("вы успешно добавили блог!");
     } catch (error) {
       console.log(error);
     }
@@ -162,14 +191,16 @@ function AdminPage() {
             })
           : null}
 
-        {activeA === "edit" ? (
-          blogs.map(( blog ) => (
-            <section className="panel important">
-              <h2>{ blog.title }</h2>
-              <button type="submit" onClick={() => deleteBlog(blog._id)}>Удалить блог</button>
-            </section>
-          ))
-        ) : null}
+        {activeA === "edit"
+          ? blogs.map((blog) => (
+              <section className="panel important">
+                <h2>{blog.title}</h2>
+                <button type="submit" onClick={() => deleteBlog(blog._id)}>
+                  Удалить блог
+                </button>
+              </section>
+            ))
+          : null}
 
         {activeA === "write" ? (
           <section className="panel important">
@@ -180,31 +211,37 @@ function AdminPage() {
               <form onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="text"
+                  value={title}
                   placeholder="Title"
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="Text"
                   onChange={(e) => setText(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="img src url"
                   onChange={(e) => setImg(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="text 1"
                   onChange={(e) => setText1(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="img 1"
                   onChange={(e) => setImg1(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="link"
                   onChange={(e) => setLink(e.target.value)}
                 />
@@ -216,7 +253,7 @@ function AdminPage() {
                       img: img,
                       text1: text1,
                       img1: img1,
-                      link: link
+                      link: link,
                     };
                     console.log(formValue);
                     handleAddProject(formValue);
@@ -238,31 +275,37 @@ function AdminPage() {
               <form onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="text"
+                  value={title}
                   placeholder="Title"
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="Text"
                   onChange={(e) => setText(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="img src url"
                   onChange={(e) => setImg(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="text 1"
                   onChange={(e) => setText1(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="img 1"
                   onChange={(e) => setImg1(e.target.value)}
                 />
                 <input
                   type="text"
+                  value={title}
                   placeholder="link"
                   onChange={(e) => setLink(e.target.value)}
                 />
@@ -274,7 +317,7 @@ function AdminPage() {
                       img: img,
                       text1: text1,
                       img1: img1,
-                      link: link
+                      link: link,
                     };
                     console.log(formValue);
                     handleAddBlog(formValue);

@@ -102,8 +102,9 @@
 
 .proj-img > img {
   width: 100%;
-  height: 100%;
+  height: 300px;
   border-radius: 5px 5px 0px 0px;
+  object-fit: cover;
 }
 
 .proj-img {
@@ -200,7 +201,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 25px;
+  gap: 90px;
 }
 
 .news-main > h2 {
@@ -237,21 +238,15 @@
 }
 
 .news-card {
-  // background-image: url("https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg");
-  // background-size: cover;
-  // background-repeat: no-repeat;
-  // background-position: center;
   width: 355px;
   height: 370px;
-  z-index: 99;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.news-img{
+.news-img {
   width: 355px;
   height: 370px;
-  z-index: 99;
   border-radius: 5px;
   cursor: pointer;
   object-fit: cover;
@@ -261,10 +256,10 @@
   font-size: 12px;
 }
 
-.news-date {
-  margin-top: 15px;
-  margin-left: 15px;
-}
+// .news-date {
+//   margin-top: 15px;
+//   margin-left: 15px;
+// }
 
 .news-desc-container {
   width: 100%;
@@ -272,8 +267,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 36vh;
+  // margin-top: 36vh;
   backdrop-filter: blur(20px);
+  background-color: #1a1a1a;
 }
 
 .news-desc {
@@ -306,5 +302,15 @@
 @media screen and (max-width: 470px) {
   .bio-h2 {
     font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .news-img {
+    width: 100%;
+    height: 370px;
+    border-radius: 5px;
+    cursor: pointer;
+    object-fit: cover;
   }
 }
