@@ -6,6 +6,7 @@ import axios from 'axios'
 function BlogPage() {
 
   interface blogsI {
+    _id: any
     title: string,
     text: string,
     img: string,
@@ -18,7 +19,7 @@ function BlogPage() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get(`https://tao-db.vercel.app/blogs`);
+      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
       setBlogs(response.data);
     } catch (error) {
       console.log(error);
@@ -49,7 +50,7 @@ function BlogPage() {
       <div className="blog-card-main">
         <div className="blog-card-container">
           { blogs?.slice(0, visibleBlogs).map(( blog, index ) => (
-            <div onClick={() => navigate("/detail")} className="blog-card">
+            <div onClick={() => navigate(`/blog/${blog._id}`)} className="blog-card">
               <img
                 src={ blog?.img ? blog.img : "https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg" }
                 className="blog-card-img"

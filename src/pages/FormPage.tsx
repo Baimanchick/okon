@@ -1,9 +1,77 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/form.scss";
+import emailjs from "@emailjs/browser"
 
 function FormPage() {
   const navigate = useNavigate();
+
+  const [ formValue, setFormValue ] = useState({
+      name: "",
+      user__email: "",
+      kilowatt: "",
+      address: "",
+  })
+
+  const form = useRef<HTMLFormElement | null>(null);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  
+    if (form.current) { // Проверяем, что form.current не равен null
+      emailjs
+        .sendForm(
+          "service_2u8r3xd",
+          "template_xe9nuau",
+          form.current, // Уточняем, что form.current не может быть undefined
+          "9_P_srz1wdW9abOTP"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+  
+      setFormValue({
+        name: "",
+        user__email: "",
+        kilowatt: "",
+        address: "",
+      });
+    } else {
+      console.error('Form not found');
+    }
+  };  
+
+  function sendEmail() {
+    const form = document.getElementById('emailForm') as HTMLFormElement;
+    
+    if (!form) {
+      console.error('Form not found');
+      return;
+    }
+    
+    const formData = new FormData(form);
+    
+    fetch('https://okon-a1fcca8c40a0.herokuapp.com/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(Object.fromEntries(formData)),
+    })
+      .then(response => response.json())
+      .then(data => {
+        alert(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }  
+
   return (
     <div className="main-content">
       {/*  */}
@@ -58,17 +126,13 @@ function FormPage() {
       <div className="form-main">
         <div className="form-container">
           <p>Я рада услышать ваше мнение :)</p>
-          <form className="form">
+          <form onSubmit={(e) => handleSubmit(e)} ref={form} className="form" id="emailForm">
             <label>Ф.И.О</label>
-            <input type="text" className="input" placeholder="Ф.И.О" />
+            <input type="text" className="input" placeholder="Ф.И.О" name="fullName" />
             <label>Обращение</label>
-            <input
-              type="text"
-              className="input-special"
-              placeholder="Обращение"
-            />
+            <input type="text" className="input-special" placeholder="Обращение" name="text" />
             <label>Ваша Почта</label>
-            <input type="text" className="input" placeholder="@gmail.com" />
+            <input type="text" className="input" placeholder="@gmail.com" name="email" />
             <button>Отправить</button>
           </form>
         </div>

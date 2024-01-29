@@ -17,7 +17,7 @@ function AboutMePage() {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get(`https://tao-db.vercel.app/blogs`);
+      const response = await axios.get(`https://okon-a1fcca8c40a0.herokuapp.com/blogs`);
       setNews(response.data);
     } catch (error) {
       console.log(error);

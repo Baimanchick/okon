@@ -237,10 +237,10 @@
 }
 
 .news-card {
-  background-image: url("https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  // background-image: url("https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg");
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center;
   width: 355px;
   height: 370px;
   z-index: 99;
@@ -248,6 +248,14 @@
   cursor: pointer;
 }
 
+.news-img{
+  width: 355px;
+  height: 370px;
+  z-index: 99;
+  border-radius: 5px;
+  cursor: pointer;
+  object-fit: cover;
+}
 .news-date > span {
   color: #c2c2c2;
   font-size: 12px;
