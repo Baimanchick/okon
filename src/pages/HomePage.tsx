@@ -3,6 +3,7 @@ import Gul from "../css/images/gulshar.jpg";
 import "../css/home.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { PuffLoader } from "react-spinners";
 
 function HomePage() {
   interface blogsI {
@@ -19,6 +20,8 @@ function HomePage() {
   const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
 
   const [news, setNews] = useState<blogsI[]>([]);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchProjects = async () => {
     try {
@@ -99,25 +102,33 @@ function HomePage() {
         <h2>Проекты</h2>
         <div className="proj-container">
           <div className="proj-card-container">
-            {projects
-              .slice(Math.max(projects.length - 3, 0))
-              .map((project, index) => (
-                <div
-                  key={index}
-                  onClick={() => navigate(`/project/${project._id}`)}
-                  className="proj-card"
-                >
-                  <div className="proj-img">
-                    <img src={project.img} alt={project.title} />
-                  </div>
-                  <div className="proj-title">
-                    <h3>{project.title}</h3>
-                    <p>{truncateText(project.text, 15)}</p>
+            {!isLoading ? (
+              <div>
+                {projects
+                  .slice(Math.max(projects.length - 3, 0))
+                  .map((project, index) => (
+                    <div
+                      key={index}
+                      onClick={() => navigate(`/project/${project._id}`)}
+                      className="proj-card"
+                    >
+                      <div className="proj-img">
+                        <img src={project.img} alt={project.title} />
+                      </div>
+                      <div className="proj-title">
+                        <h3>{project.title}</h3>
+                        <p>{truncateText(project.text, 15)}</p>
 
-                    <button>Подробнее</button>
-                  </div>
-                </div>
-              ))}
+                        <button>Подробнее</button>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <div>
+                <PuffLoader color="#fff" />
+              </div>
+            )}
           </div>
         </div>
 
@@ -132,18 +143,26 @@ function HomePage() {
         <h2> Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
-            {news.slice(Math.max(news.length - 3, 0)).map((item, index) => (
-              <div
-                key={index}
-                onClick={() => navigate(`/blog/${item._id}`)}
-                className="news-card"
-              >
-                <img src={item.img} className="news-img" />
-                <div className="news-desc-container">
-                  <span className="news-desc">{item.title}</span>
-                </div>
+            {!isLoading ? (
+              <div>
+                {news.slice(Math.max(news.length - 3, 0)).map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => navigate(`/blog/${item._id}`)}
+                    className="news-card"
+                  >
+                    <img src={item.img} className="news-img" />
+                    <div className="news-desc-container">
+                      <span className="news-desc">{item.title}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : (
+              <div>
+                <PuffLoader color="#fff" />
+              </div>
+            )}
           </div>
         </div>
         <div className="news-button-container">

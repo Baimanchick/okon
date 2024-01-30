@@ -10,6 +10,7 @@ import FormPage from "../pages/FormPage";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
 import AdminPage from "../pages/AdminPage";
 import BlogDetailPage from "../pages/BlogDetailPage";
+import NotFounedPage from "../pages/NotFounedPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -40,6 +41,8 @@ function MainRoutes() {
         <Route path="/blog/:id" element={<BlogDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/form" element={<FormPage />} />
+        <Route path="/*" element={<NotFounedPage />} />
+
         {/* <Route path="/projectdetail" element={<ProjectDetailPage />} /> */}
       </Route>
       <Route path="/admin-132213" element={<AdminPage />} />
