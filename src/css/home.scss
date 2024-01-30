@@ -280,6 +280,53 @@
   text-align: center;
 }
 
+.loader-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15vh;
+}
+
+.video-container {
+  width: 100%;
+  height: 450px;
+  margin-top: 20px;
+}
+
+.not-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Устанавливаем высоту контейнера для выравнивания по центру */
+}
+
+.not {
+  text-align: center; /* Центрируем текст внутри блока */
+}
+
+.not-h2 {
+  color: white; /* Белый цвет текста */
+  font-size: 1.5rem; /* Огромный размер шрифта */
+  font-weight: bold; /* Жирный текст */
+  text-transform: uppercase; /* Преобразование текста в верхний регистр */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для эффекта объемности */
+  letter-spacing: 2px; /* Расстояние между буквами */
+  padding: 20px; /* Внутренний отступ */
+  border-radius: 10px; /* Скругление углов */
+}
+
+@media screen and (max-width: 700px) {
+  .video-container {
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .video-container {
+    height: 200px;
+  }
+}
+
 @media screen and (max-width: 1115px) {
   .main-content {
     margin: 0px 20px 0px 20px;

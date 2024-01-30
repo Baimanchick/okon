@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../css/project.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { PuffLoader } from "react-spinners";
 
 function ProjectPage() {
   interface blogsI {
+    _id: any;
     title: string;
     text: string;
     img: string;
@@ -13,6 +15,7 @@ function ProjectPage() {
   }
 
   const [projects, setProjects] = useState<blogsI[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchProjects = async () => {
     try {
@@ -52,23 +55,31 @@ function ProjectPage() {
       <div className="proj-page-main">
         <div className="proj-page-container">
           <div className="proj-page-card-container">
-            {projects?.map((project) => {
-              return (
-                <div
-                  onClick={() => navigate("/projectdetail")}
-                  className="proj-page-card"
-                >
-                  <div className="proj-page-img">
-                    <img src={project.img} />
-                  </div>
-                  <div className="proj-page-title">
-                    <h3>{project.title}</h3>
-                    <p>{truncateText(project.text, 15)}</p>
-                    <button>Подробнее</button>
-                  </div>
-                </div>
-              );
-            })}
+            {!isLoading ? (
+              <div>
+                {projects?.map((project) => {
+                  return (
+                    <div
+                      onClick={() => navigate(`/project/${project._id}`)}
+                      className="proj-page-card"
+                    >
+                      <div className="proj-page-img">
+                        <img src={project.img} />
+                      </div>
+                      <div className="proj-page-title">
+                        <h3>{project.title}</h3>
+                        <p>{truncateText(project.text, 15)}</p>
+                        <button>Подробнее</button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div>
+                <PuffLoader color="#fff" />
+              </div>
+            )}
           </div>
         </div>
       </div>

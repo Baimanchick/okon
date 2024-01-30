@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
+
 import "../css/projectdetailpage.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { PuffLoader } from "react-spinners";
 
 function ProjectDetailPage() {
   interface blogsI {
@@ -32,6 +34,21 @@ function ProjectDetailPage() {
     } catch (error) {
       console.error("Error fetching project details:", error);
     }
+  };
+
+  const shareViaWhatsApp = () => {
+    const urlToShare = encodeURIComponent(window.location.href);
+    window.open(`whatsapp://send?text=${urlToShare}`);
+  };
+
+  const shareViaTelegram = () => {
+    const urlToShare = encodeURIComponent(window.location.href);
+    window.open(`https://t.me/share/url?url=${urlToShare}`);
+  };
+
+  const shareViaFacebook = () => {
+    const urlToShare = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${urlToShare}`);
   };
 
   const fetchProjects = async () => {
@@ -69,7 +86,7 @@ function ProjectDetailPage() {
   const prevProjectId = projects[currentIndex - 1]
     ? projects[currentIndex - 1]._id
     : null;
-    
+
   let link = "https://www.youtube.com/embed/dQw4w9WgXcQ?si=3MEPsuCOsTD6Rs9U";
 
   return project ? (
@@ -96,15 +113,15 @@ function ProjectDetailPage() {
             <div className="project-detail-utils-container">
               <h3>Поделитесь с друзьями</h3>
               <div className="project-detail-icons">
-                <a href="">
+                <a href="#" onClick={shareViaFacebook}>
                   <FaFacebook className="icon-item" />
                 </a>
 
-                <a href="">
+                <a href="#" onClick={shareViaTelegram}>
                   <FaTelegramPlane className="icon-item" />
                 </a>
 
-                <a href="">
+                <a href="#" onClick={shareViaWhatsApp}>
                   <IoLogoWhatsapp className="icon-item" />
                 </a>
               </div>
@@ -199,8 +216,8 @@ function ProjectDetailPage() {
       </div>
     </div>
   ) : (
-    <div>
-      <h1>Загрузка данных...</h1>
+    <div className="loader-main">
+      <PuffLoader color="#fff" />
     </div>
   );
 }

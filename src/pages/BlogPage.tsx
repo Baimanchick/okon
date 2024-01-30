@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/blog.scss";
 import axios from "axios";
+import { PuffLoader } from "react-spinners";
 
 function BlogPage() {
   interface blogsI {
@@ -15,6 +16,7 @@ function BlogPage() {
 
   const [blogs, setBlogs] = useState<blogsI[]>([]);
   const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchBlogs = async () => {
     try {
@@ -58,26 +60,34 @@ function BlogPage() {
 
       <div className="blog-card-main">
         <div className="blog-card-container">
-          {blogs?.slice(0, visibleBlogs).map((blog, index) => (
-            <div
-              onClick={() => navigate(`/blog/${blog._id}`)}
-              className="blog-card"
-            >
-              <img
-                src={
-                  blog?.img
-                    ? blog.img
-                    : "https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
-                }
-                className="blog-card-img"
-                alt="img blog"
-              />
-              <div className="blog-card-title-container">
-                <h3>{blog?.title}</h3>
-                <p>{truncateText(blog?.text, 35)}</p>
-              </div>
+          {!isLoading ? (
+            <div>
+              {blogs?.slice(0, visibleBlogs).map((blog, index) => (
+                <div
+                  onClick={() => navigate(`/blog/${blog._id}`)}
+                  className="blog-card"
+                >
+                  <img
+                    src={
+                      blog?.img
+                        ? blog.img
+                        : "https://st-1.akipress.org/cdn-st-0/qdX/P/2141725.9bb9f0e305be4d88f468a1bf98ca6060.jpg"
+                    }
+                    className="blog-card-img"
+                    alt="img blog"
+                  />
+                  <div className="blog-card-title-container">
+                    <h3>{blog?.title}</h3>
+                    <p>{truncateText(blog?.text, 35)}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            <div>
+              <PuffLoader color="#fff" />
+            </div>
+          )}
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../css/about.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { PuffLoader } from "react-spinners";
 
 function AboutMePage() {
   interface blogsI {
@@ -15,6 +16,7 @@ function AboutMePage() {
   const navigate = useNavigate();
   const [news, setNews] = useState<blogsI[]>([]);
   const [visibleBlogs, setVisibleBlogs] = useState<number>(3);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchNews = async () => {
     try {
@@ -98,19 +100,26 @@ function AboutMePage() {
         <h2> Новости</h2>
         <div className="news-container">
           <div className="news-card-container">
-            {news.slice(Math.max(news.length - 3, 0)).map((item, index) => (
-              <div
-                key={index}
-                onClick={() => navigate(`/blog/${item._id}`)}
-                className="news-card"
-              >
-                <img src={item.img} className="news-img" />
-                <div className="news-date"></div>
-                <div className="news-desc-container">
-                  <span className="news-desc">{item.title}</span>
-                </div>
+            {!isLoading ? (
+              <div>
+                {news.slice(Math.max(news.length - 3, 0)).map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => navigate(`/blog/${item._id}`)}
+                    className="news-card"
+                  >
+                    <img src={item.img} className="news-img" />
+                    <div className="news-desc-container">
+                      <span className="news-desc">{item.title}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : (
+              <div>
+                <PuffLoader color="#fff" />
+              </div>
+            )}
           </div>
         </div>
         <div className="news-button-container">
