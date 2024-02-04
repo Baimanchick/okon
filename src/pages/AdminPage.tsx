@@ -332,7 +332,7 @@ function AdminPage() {
 
         {activeA === "users" ? (
           <section className="panel important">
-            <h2>Я не придумал что тут</h2>
+            <h2>Я еще не придумал что тут</h2>
           </section>
         ) : null}
       </main>
