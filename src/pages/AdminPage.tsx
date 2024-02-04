@@ -217,31 +217,31 @@ function AdminPage() {
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={text}
                   placeholder="Text"
                   onChange={(e) => setText(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={img}
                   placeholder="img src url"
                   onChange={(e) => setImg(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={text1}
                   placeholder="text 1"
                   onChange={(e) => setText1(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={img1}
                   placeholder="img 1"
                   onChange={(e) => setImg1(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={link}
                   placeholder="link"
                   onChange={(e) => setLink(e.target.value)}
                 />
@@ -281,31 +281,31 @@ function AdminPage() {
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={text}
                   placeholder="Text"
                   onChange={(e) => setText(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={img}
                   placeholder="img src url"
                   onChange={(e) => setImg(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={text1}
                   placeholder="text 1"
                   onChange={(e) => setText1(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={img1}
                   placeholder="img 1"
                   onChange={(e) => setImg1(e.target.value)}
                 />
                 <input
                   type="text"
-                  value={title}
+                  value={link}
                   placeholder="link"
                   onChange={(e) => setLink(e.target.value)}
                 />
@@ -332,7 +332,7 @@ function AdminPage() {
 
         {activeA === "users" ? (
           <section className="panel important">
-            <h2>Я не придумал что тут</h2>
+            <h2>Я еще не придумал что тут</h2>
           </section>
         ) : null}
       </main>

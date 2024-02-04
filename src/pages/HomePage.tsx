@@ -153,7 +153,9 @@ function HomePage() {
                   >
                     <img src={item.img} className="news-img" />
                     <div className="news-desc-container">
-                      <span className="news-desc">{item.title}</span>
+                      <span className="news-desc">
+                        {truncateText(item.title, 10)}
+                      </span>
                     </div>
                   </div>
                 ))}

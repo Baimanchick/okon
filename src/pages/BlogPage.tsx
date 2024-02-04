@@ -77,8 +77,8 @@ function BlogPage() {
                     alt="img blog"
                   />
                   <div className="blog-card-title-container">
-                    <h3>{blog?.title}</h3>
-                    <p>{truncateText(blog?.text, 35)}</p>
+                    <h3>{truncateText(blog?.title, 8)}</h3>
+                    <p>{truncateText(blog?.text, 15)}</p>
                   </div>
                 </div>
               ))}
