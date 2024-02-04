@@ -62,7 +62,6 @@ function BlogDetailPage() {
   };
 
   const truncateText = (text: string, wordLimit: number) => {
-    // Убедитесь, что text действительно строка
     if (typeof text !== "string") return "";
 
     const words = text.split(" ");
@@ -206,7 +205,7 @@ function BlogDetailPage() {
                     >
                       <img src={item.img} alt="" />
                       <div className="project-detail-similar-card-title">
-                        <p>{item.title}</p>
+                        <p>{truncateText(item.title, 8)}</p>
                       </div>
                     </div>
                   ))}

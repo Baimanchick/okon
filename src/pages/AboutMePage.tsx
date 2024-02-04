@@ -29,6 +29,14 @@ function AboutMePage() {
     }
   };
 
+  const truncateText = (text: any, wordLimit: any) => {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  };
+
   useEffect(() => {
     fetchNews();
   }, []);
@@ -110,7 +118,9 @@ function AboutMePage() {
                   >
                     <img src={item.img} className="news-img" />
                     <div className="news-desc-container">
-                      <span className="news-desc">{item.title}</span>
+                      <span className="news-desc">
+                        {truncateText(item.title, 10)}
+                      </span>
                     </div>
                   </div>
                 ))}
