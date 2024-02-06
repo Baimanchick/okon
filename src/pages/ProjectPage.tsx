@@ -67,7 +67,7 @@ function ProjectPage() {
                         <img src={project.img} />
                       </div>
                       <div className="proj-page-title">
-                        <h3>{project.title}</h3>
+                        <h3>{truncateText(project.text, 6)}</h3>
                         <p>{truncateText(project.text, 15)}</p>
                         <button>Подробнее</button>
                       </div>

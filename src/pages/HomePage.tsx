@@ -116,8 +116,8 @@ function HomePage() {
                         <img src={project.img} alt={project.title} />
                       </div>
                       <div className="proj-title">
-                        <h3>{project.title}</h3>
-                        <p>{truncateText(project.text, 15)}</p>
+                        <h3>{truncateText(project.title, 6)}</h3>
+                        <p>{truncateText(project.text, 8)}</p>
 
                         <button>Подробнее</button>
                       </div>
