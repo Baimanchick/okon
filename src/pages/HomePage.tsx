@@ -74,7 +74,7 @@ function HomePage() {
 
           <div className="bio-wrapper-right">
             <div className="bio-title">
-              <h2 className="bio-h2">Гульшаркан Оконовна</h2>
+              <h2 className="bio-h2">Гулшаркан Оконовна</h2>
               <h3 className="bio-h3">Бизнесвумен. Депутат ЖК. </h3>
               <p className="bio-p-1">
                 У каждого человека есть свое, уникальное предназначение. Мы
