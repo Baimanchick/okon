@@ -190,15 +190,18 @@
 }
 
 .project-detail-simialr-card > img {
-  width: 245px;
+  width: 100%;
   height: 230px;
   object-fit: cover;
   border-radius: 5px;
 }
 
 .project-detail-simialr-card {
-  width: 245px;
+  width: 265px;
   cursor: pointer;
+  background-color: #292929;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 .project-detail-similar-card-title {

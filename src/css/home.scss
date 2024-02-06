@@ -361,3 +361,12 @@
     object-fit: cover;
   }
 }
+
+@media screen and (max-width: 390px) {
+  .proj-card {
+    width: 315px;
+  }
+  .news-card {
+    width: 315px;
+  }
+}
