@@ -362,11 +362,11 @@
   }
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 420px) {
   .proj-card {
-    width: 315px;
+    width: auto;
   }
   .news-card {
-    width: 315px;
+    width: auto;
   }
 }
